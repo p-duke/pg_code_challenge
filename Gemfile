@@ -18,6 +18,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5'
   gem 'rails-controller-testing'
+  gem 'jasmine-rails'
 end
 
 group :development do
