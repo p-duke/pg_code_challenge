@@ -10,9 +10,10 @@ RSpec.describe User, type: :model  do
     it { is_expected.to have_attributes(name: 'Charlie') }
     it { is_expected.to have_attributes(age: 22) }
     it { is_expected.to have_attributes(gender: 'female') }
-    it { is_expected.to have_attributes(location: 'Boston') }
-    it { is_expected.to have_attributes(health_conditions: ['Heart Disease', 'High Cholesterol'] ) }
 
+    it 'should contain a health condition object' do
+      expect(user.health_conditions.first).to be_instance_of(HealthCondition)
+    end
   end
 
   describe "validations" do
