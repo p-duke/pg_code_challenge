@@ -5,6 +5,7 @@ class HealthCondition
                 "Sleep Apnea" => 0.06,
                 "Heart Disease" => 0.17,
                 "High Cholesterol" => 0.08,
+                "n/a" => 0.00,
                 "Asthma" => 0.04 }
   
   attr_accessor :name, :cost_increase
