@@ -1,5 +1,78 @@
 == README
 
-TODO:
+=== Dependencies
 
-* Cleanup models interface with uneccessary public attributes
+* The test suite uses PostgreSQL so in order to run you'll need to start up Postgresql first ( Resource for macs: https://postgresapp.com/ )
+
+* This is a Rails application that uses version 4.2.6
+
+* The Ruby version is 2.2.5 
+
+* This application uses Bundler to manage dependencies. Bundler version 1.14.6
+
+* Make sure to 'bundle install' (see instructions below)
+
+
+=== Instructions for running the application:
+
+* git clone https://github.com/p-duke/pg_code_challenge.git
+
+* cd pg_code_challenge/
+
+* run 'bundle install' in command line
+
+* run 'bundle exec rails s' in command line
+
+* navigate to http://localhost:3000 in web browser (I was using Chrome)
+
+* place text in textarea and click calculate
+
+* change text and click calculate again to run another data set
+
+
+=== Submission
+
+Design:
+
+In the design of this application I chose to break the domain into three different models.
+
+1) User model
+  I decided that the user model would hold all data related to an individual person which also included any methods
+that help determine their eligibility for discounts or number of years over 18 for later price calculations. I also 
+decided to have a nested HealthCondition model on initialize of the User model because of the context of the sample input 
+it seemed relevant to have available as an attribute. The user model also contains several validations and an extensive
+test suite in Rspec. I was cautious about what to expose to the public interface and anything that was not going to be 
+consumed by other objects were kept private.
+
+2) HealthCondition
+  A fairly straight forward model that looks up the cost increase per health condition on initialize. I didn't feel
+there was much more to this object other than to access it's 'cost_increase' for later calculations in the PriceCalculation
+model. If there's ever a need for other objects to consume this model its ready to be used anywhere else in the application.
+Plus with an easy hash lookup table it can scale to any number of other health conditions.
+
+3) PriceCalculation
+  This model is also quite simple only needing one instance method that runs the policy calculation per user. It relies on
+quite a few private methods that I split up into maintainable bites. I also took the time to test these private methods.
+Although they aren't available to the public interface I felt it was important to test them since they makeup a calculation
+that may get more complicated in the future. This way if there was a bug in a particular part of the calculation I could run 
+the tests to track it down. 
+
+Why a Rails app? (tradeoffs)
+
+  There were two directions to take this application that I considered. I could've configured some free standing ruby files with
+maybe an html and javascript file. But the words "MVP" and "scalable" kept pushing me towards a simple Rails app. It doesn't
+take long to start up the application and get coding quickly. But also, it leaves me with a great foundation if there was a need
+to scale. Currently there isn't any tables or migrations but I have configured postgres just in case it would be
+needed. I also decided to only include the ActiveModel::Model module which has the neccessary functionality but not quite as robust
+as ActiveRecord::Base, since there isn't a database involved. There is a simple controller used to respond to creating 
+PriceCalculation resources which are requested with an Ajax call. I felt the current functionality of application was only concerned with
+creating a new set of price calculations each time. In order to parse the string of text from the textarea I used a PriceCalculationHelper
+module to parse the parameters and instantiate a collection of policy calculations per user. Each time the user calculates data
+a view partial is rendered and appended to the parent view with jQuery. I tried to write unit tests for every model, module, and controller. 
+I feel this application has just the right amount of foundation to be ready for potential scale in the future.
+
+I enjoyed spending time thinking through how to build this application, especially when it came to parsing and calculating the data. I hope
+you enjoy it! Thanks!
+
+- Peter
+
