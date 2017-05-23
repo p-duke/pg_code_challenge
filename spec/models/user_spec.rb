@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model  do
 
-  params = {name: 'Charlie', age: 22, gender: 'female', location: 'Boston', health_conditions: ["Heart Disease", "High Cholesterol"]}
+  params = {"first_name"=> 'Charlie', "age"=> 22, "gender"=> 'female', "location"=> 'Boston', "health_conditions"=> ["Heart Disease", "High Cholesterol"]}
   subject(:user) { User.new(params) }
     
   describe 'initialize' do
 
-    it { is_expected.to have_attributes(name: 'Charlie') }
+    it { is_expected.to have_attributes(first_name: 'Charlie') }
     it { is_expected.to have_attributes(age: 22) }
     it { is_expected.to have_attributes(gender: 'female') }
 
@@ -18,12 +18,12 @@ RSpec.describe User, type: :model  do
 
   describe "validations" do
     
-    context "when the user's name exists" do
+    context "when the user's first_name exists" do
       it { should be_valid }
     end
 
-    context "when the user's name is empty" do
-      before { user.name = "" }
+    context "when the user's first_name is empty" do
+      before { user.first_name = "" }
 
       it { should_not be_valid }
 

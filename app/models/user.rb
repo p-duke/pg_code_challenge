@@ -3,18 +3,18 @@ class User
 
   EAST_COST_LOCATIONS = [ 'Boston', 'New York' ].freeze
 
-  attr_accessor :name, :age, :gender, :location, :health_conditions
+  attr_accessor :first_name, :age, :gender, :location, :health_conditions
 
-  validates :name, :age, :gender, :location, presence: true
+  validates :first_name, :age, :gender, :location, presence: true
   validates :age, numericality: { only_integer: true }
   validates :gender, inclusion: { in: %w(male female) }
 
   def initialize(params = {})
-    @name = params[:name]
-    @age = params[:age]
-    @gender = params[:gender]
-    @location = params[:location]
-    @health_conditions = instantiate_health_conditions(params[:health_conditions])
+    @first_name = params["first_name"]
+    @age = params["age"]
+    @gender = params["gender"]
+    @location = params["location"]
+    @health_conditions = instantiate_health_conditions(params["health_conditions"])
   end
 
   def over_18?
