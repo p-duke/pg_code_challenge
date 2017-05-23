@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>TICKLE Policy Calculation</h1>
+
+  <% if @price_calculation && @price_calculation.errors.any? %>
+    <div id='errors'>
+      <ul>
+        <% @price_calculation.errors.messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <form id="calculation-form" method="post" action="/create">
+    <textarea id="calc-info" name="info" rows="10" cols="70" required></textarea>
+    <br>
+    <input class="btn btn-success" id="calculate-button" type="submit" value="Calculate">
+  </form>
+  <br>
+
+  <div class="calculation-total"></div>
+</div>
