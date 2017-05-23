@@ -1,0 +1,11 @@
+<div id='total-cost-list'>
+  <ul>
+    <% @policy_calculations.each do |policy| %>
+      <% if policy.first.over_18? %>
+        <li><%= policy.first.first_name %>'s policy is estimated at $<%= policy.last.total_cost %></li>
+      <% else %>
+        <li><%= policy.first.first_name %> is not eligible for a life insurance policy</li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
