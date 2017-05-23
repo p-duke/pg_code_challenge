@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PriceCalculation, type: :model do
-  let(:user) { User.new(name: "Kelly", age: 50, gender: 'female', location: 'Boston', health_conditions: ['Allergies', 'Heart Disease']) }
+  let(:user) { User.new("first_name"=> "Kelly", "age"=> 50, "gender"=> 'female', "location"=> 'Boston', "health_conditions"=> ['Allergies', 'Heart Disease']) }
   let(:params) { { user: user } }
 
   subject(:price_calculation) { PriceCalculation.new(params) }

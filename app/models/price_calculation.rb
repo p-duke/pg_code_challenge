@@ -11,6 +11,10 @@ class PriceCalculation
   end
 
   def run_policy_calculation
+    if !user.over_18?
+      return
+    end
+
     age_eligibility
     east_coast_discount_eligibility
     health_condition_calculations
@@ -21,11 +25,9 @@ class PriceCalculation
   attr_reader :user
 
   def age_eligibility
-    if user.over_18?
-      multiplier = (user.age - 18) / 5 
-      additional_cost = multiplier * 20
-      @total_cost += additional_cost
-    end
+    multiplier = (user.age - 18) / 5 
+    additional_cost = multiplier * 20
+    @total_cost += additional_cost
   end
 
   def east_coast_discount_eligibility
