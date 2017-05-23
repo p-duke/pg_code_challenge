@@ -16,7 +16,7 @@ to run a Postgres connection before navigating to localhost:3000 in your browser
 
 === Instructions for running the application:
 
-* git clone https://github.com/p-duke/pg_code_challenge.git
+* either unzip folder or git clone https://github.com/p-duke/pg_code_challenge.git
 
 * cd pg_code_challenge/
 
@@ -31,6 +31,13 @@ to run a Postgres connection before navigating to localhost:3000 in your browser
 * place text in textarea and click calculate
 
 * change text and click calculate again to run another data set
+
+
+NOTE: I also deployed this demo to heroku just in case there's any problem getting the app running locally. 
+
+You can find it here:
+
+https://tickle-policy-calculator.herokuapp.com/
 
 
 === Submission
