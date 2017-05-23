@@ -2,7 +2,8 @@
 
 === Dependencies
 
-* The test suite uses PostgreSQL so in order to run you'll need to start up Postgresql first ( Resource for macs: https://postgresapp.com/ )
+* Although the database is not being used this application has Postgres installed, mostly for running the test suite. Make sure to
+to run a Postgres connection before navigating to localhost:3000 in your browser.
 
 * This is a Rails application that uses version 4.2.6
 
@@ -20,6 +21,8 @@
 * cd pg_code_challenge/
 
 * run 'bundle install' in command line
+
+* start a Postgres connection (If your on mac this app is easy to install and use https://postgresapp.com/)
 
 * run 'bundle exec rails s' in command line
 
